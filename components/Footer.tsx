@@ -9,7 +9,13 @@ export function Footer() {
         <p aria-label="EcoMeter AI copyright">
           © {new Date().getFullYear()} EcoMeter AI. Built for sustainable ops.
         </p>
-        <div className="flex items-center gap-6">
+        <div className="flex flex-wrap items-center justify-center gap-6">
+          <Link href="/community" aria-label="Open the community playbooks">
+            Community
+          </Link>
+          <Link href="/leaderboard" aria-label="View the gamified leaderboard">
+            Leaderboard
+          </Link>
           <Link href="/guide" aria-label="Open the EcoMeter usage guide">
             Usage Guide
           </Link>
