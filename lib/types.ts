@@ -37,3 +37,13 @@ export type InsightsResponse = {
   actions: string[];
   forecastSummary: string;
 };
+
+export type LeaderboardEntry = {
+  rank: number;
+  company: string;
+  industry: string;
+  ecoScore: number;
+  quarterlyReduction: number;
+  badge: "Trailblazer" | "Accelerator" | "Contender" | "Rising Star";
+  highlights: string;
+};
