@@ -1,0 +1,22 @@
+{
+  "company": "HelioTech Energy",
+  "period": "Q1 2026",
+  "departments": [
+    { "department": "Solar Arrays", "month": "2026-01", "quantity": 1820, "unit": "kWh", "emission_factor": 0.18 },
+    { "department": "Solar Arrays", "month": "2026-02", "quantity": 1760, "unit": "kWh", "emission_factor": 0.18 },
+    { "department": "Solar Arrays", "month": "2026-03", "quantity": 1895, "unit": "kWh", "emission_factor": 0.18 },
+    { "department": "Battery Storage", "month": "2026-01", "quantity": 920, "unit": "kWh", "emission_factor": 0.12 },
+    { "department": "Battery Storage", "month": "2026-02", "quantity": 960, "unit": "kWh", "emission_factor": 0.12 },
+    { "department": "Battery Storage", "month": "2026-03", "quantity": 1005, "unit": "kWh", "emission_factor": 0.12 },
+    { "department": "Backup Diesel", "month": "2026-01", "quantity": 210, "unit": "L", "emission_factor": 2.68 },
+    { "department": "Backup Diesel", "month": "2026-02", "quantity": 240, "unit": "L", "emission_factor": 2.68 },
+    { "department": "Backup Diesel", "month": "2026-03", "quantity": 225, "unit": "L", "emission_factor": 2.68 },
+    { "department": "Maintenance Travel", "month": "2026-01", "quantity": 14, "unit": "trips", "emission_factor": 210 },
+    { "department": "Maintenance Travel", "month": "2026-02", "quantity": 16, "unit": "trips", "emission_factor": 210 },
+    { "department": "Maintenance Travel", "month": "2026-03", "quantity": 15, "unit": "trips", "emission_factor": 210 },
+    { "department": "Data Center", "month": "2026-01", "quantity": 580, "unit": "kWh", "emission_factor": 0.74 },
+    { "department": "Data Center", "month": "2026-02", "quantity": 600, "unit": "kWh", "emission_factor": 0.74 },
+    { "department": "Data Center", "month": "2026-03", "quantity": 630, "unit": "kWh", "emission_factor": 0.74 }
+  ]
+}
+
