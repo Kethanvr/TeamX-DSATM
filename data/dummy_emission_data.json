@@ -1,0 +1,19 @@
+{
+  "company": "ABC Manufacturing",
+  "period": "Q4 2025",
+  "departments": [
+    { "department": "Transport", "month": "2025-10", "quantity": 480, "unit": "L", "emission_factor": 2.68 },
+    { "department": "Transport", "month": "2025-11", "quantity": 510, "unit": "L", "emission_factor": 2.68 },
+    { "department": "Transport", "month": "2025-12", "quantity": 495, "unit": "L", "emission_factor": 2.68 },
+    { "department": "Electricity", "month": "2025-10", "quantity": 1180, "unit": "kWh", "emission_factor": 0.82 },
+    { "department": "Electricity", "month": "2025-11", "quantity": 1240, "unit": "kWh", "emission_factor": 0.82 },
+    { "department": "Electricity", "month": "2025-12", "quantity": 1215, "unit": "kWh", "emission_factor": 0.82 },
+    { "department": "Travel", "month": "2025-10", "quantity": 18, "unit": "trips", "emission_factor": 245 },
+    { "department": "Travel", "month": "2025-11", "quantity": 22, "unit": "trips", "emission_factor": 245 },
+    { "department": "Travel", "month": "2025-12", "quantity": 16, "unit": "trips", "emission_factor": 245 },
+    { "department": "Manufacturing", "month": "2025-10", "quantity": 310, "unit": "kg", "emission_factor": 1.36 },
+    { "department": "Manufacturing", "month": "2025-11", "quantity": 325, "unit": "kg", "emission_factor": 1.36 },
+    { "department": "Manufacturing", "month": "2025-12", "quantity": 305, "unit": "kg", "emission_factor": 1.36 }
+  ]
+}
+

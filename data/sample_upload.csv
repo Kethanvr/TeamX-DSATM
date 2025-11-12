@@ -1,0 +1,14 @@
+department,month,quantity,unit,emission_factor
+Transport,2025-10,460,L,2.68
+Transport,2025-11,505,L,2.68
+Transport,2025-12,498,L,2.68
+Electricity,2025-10,1150,kWh,0.82
+Electricity,2025-11,1225,kWh,0.82
+Electricity,2025-12,1190,kWh,0.82
+Travel,2025-10,20,trips,245
+Travel,2025-11,23,trips,245
+Travel,2025-12,18,trips,245
+Manufacturing,2025-10,295,kg,1.36
+Manufacturing,2025-11,310,kg,1.36
+Manufacturing,2025-12,300,kg,1.36
+
