@@ -1,0 +1,22 @@
+{
+  "company": "Nova Logistics",
+  "period": "Peak Season 2025",
+  "departments": [
+    { "department": "Long Haul Fleet", "month": "2025-09", "quantity": 720, "unit": "L", "emission_factor": 2.65 },
+    { "department": "Long Haul Fleet", "month": "2025-10", "quantity": 760, "unit": "L", "emission_factor": 2.65 },
+    { "department": "Long Haul Fleet", "month": "2025-11", "quantity": 805, "unit": "L", "emission_factor": 2.65 },
+    { "department": "Air Freight", "month": "2025-09", "quantity": 24, "unit": "flights", "emission_factor": 910 },
+    { "department": "Air Freight", "month": "2025-10", "quantity": 27, "unit": "flights", "emission_factor": 910 },
+    { "department": "Air Freight", "month": "2025-11", "quantity": 30, "unit": "flights", "emission_factor": 910 },
+    { "department": "Last Mile Vans", "month": "2025-09", "quantity": 550, "unit": "L", "emission_factor": 2.45 },
+    { "department": "Last Mile Vans", "month": "2025-10", "quantity": 610, "unit": "L", "emission_factor": 2.45 },
+    { "department": "Last Mile Vans", "month": "2025-11", "quantity": 665, "unit": "L", "emission_factor": 2.45 },
+    { "department": "Warehousing", "month": "2025-09", "quantity": 980, "unit": "kWh", "emission_factor": 0.78 },
+    { "department": "Warehousing", "month": "2025-10", "quantity": 1015, "unit": "kWh", "emission_factor": 0.78 },
+    { "department": "Warehousing", "month": "2025-11", "quantity": 1080, "unit": "kWh", "emission_factor": 0.78 },
+    { "department": "Cold Storage", "month": "2025-09", "quantity": 640, "unit": "kWh", "emission_factor": 0.92 },
+    { "department": "Cold Storage", "month": "2025-10", "quantity": 660, "unit": "kWh", "emission_factor": 0.92 },
+    { "department": "Cold Storage", "month": "2025-11", "quantity": 710, "unit": "kWh", "emission_factor": 0.92 }
+  ]
+}
+
