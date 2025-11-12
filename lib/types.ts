@@ -37,4 +37,3 @@ export type GeminiResponse = {
   actions: string[];
   forecastSummary: string;
 };
-
