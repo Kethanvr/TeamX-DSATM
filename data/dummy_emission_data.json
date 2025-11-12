@@ -85,6 +85,48 @@
       "quantity": 305,
       "unit": "kg",
       "emission_factor": 1.36
+    },
+    {
+      "department": "Waste Management",
+      "month": "2025-10",
+      "quantity": 42,
+      "unit": "tons",
+      "emission_factor": 28.5
+    },
+    {
+      "department": "Waste Management",
+      "month": "2025-11",
+      "quantity": 39,
+      "unit": "tons",
+      "emission_factor": 28.5
+    },
+    {
+      "department": "Waste Management",
+      "month": "2025-12",
+      "quantity": 44,
+      "unit": "tons",
+      "emission_factor": 28.5
+    },
+    {
+      "department": "Research & Development",
+      "month": "2025-10",
+      "quantity": 180,
+      "unit": "kWh",
+      "emission_factor": 0.72
+    },
+    {
+      "department": "Research & Development",
+      "month": "2025-11",
+      "quantity": 210,
+      "unit": "kWh",
+      "emission_factor": 0.72
+    },
+    {
+      "department": "Research & Development",
+      "month": "2025-12",
+      "quantity": 240,
+      "unit": "kWh",
+      "emission_factor": 0.72
     }
   ]
 }
