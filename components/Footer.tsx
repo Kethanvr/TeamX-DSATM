@@ -10,16 +10,11 @@ export function Footer() {
           © {new Date().getFullYear()} EcoMeter AI. Built for sustainable ops.
         </p>
         <div className="flex items-center gap-6">
+          <Link href="/guide" aria-label="Open the EcoMeter usage guide">
+            Usage Guide
+          </Link>
           <Link href="/demo" aria-label="View the demo script">
             Demo Script
-          </Link>
-          <Link
-            href="https://developers.google.com/ai/gemini-api"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Google Gemini API documentation"
-          >
-            Gemini Docs
           </Link>
         </div>
       </div>
