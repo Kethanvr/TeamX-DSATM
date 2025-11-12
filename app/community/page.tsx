@@ -1,4 +1,4 @@
-import { communityPosts } from "@/lib/communityData";
+import { communityPosts, sustainabilityChallenges } from "@/lib/communityData";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -35,6 +35,37 @@ export default function CommunityPage() {
       </section>
 
       <section className="space-y-5">
+        <Card className="bg-white">
+          <CardHeader>
+            <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+              <div>
+                <CardTitle className="text-2xl font-semibold text-slate-900">
+                  Sustainability Challenges
+                </CardTitle>
+                <CardDescription>
+                  Practice using sustainable products and game-plan reductions with peer feedback.
+                </CardDescription>
+              </div>
+              <Badge variant="outline">Current Sprint</Badge>
+            </div>
+          </CardHeader>
+          <CardContent className="grid gap-4 md:grid-cols-2">
+            {sustainabilityChallenges.map((challenge) => (
+              <div key={challenge.id} className="rounded-2xl border border-emerald-100 bg-emerald-50/70 p-4">
+                <h3 className="text-lg font-semibold text-emerald-900">{challenge.title}</h3>
+                <p className="text-sm text-emerald-800">{challenge.description}</p>
+                <div className="mt-3 flex flex-wrap gap-2 text-xs uppercase tracking-wide text-emerald-700">
+                  <span className="rounded-full bg-white/80 px-3 py-1">{challenge.timeline}</span>
+                  <span className="rounded-full bg-white/80 px-3 py-1">{challenge.goal}</span>
+                </div>
+                <p className="mt-3 text-xs text-emerald-700">
+                  Featured products: {challenge.featuredProducts.join(", ")}
+                </p>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+
         {communityPosts.map((post) => (
           <Card key={post.id} className="bg-white shadow-sm">
             <CardHeader className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
