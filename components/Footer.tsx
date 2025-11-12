@@ -13,6 +13,9 @@ export function Footer() {
           <Link href="/community" aria-label="Open the community playbooks">
             Community
           </Link>
+          <Link href="/news" aria-label="Open daily sustainability insights">
+            Daily Insights
+          </Link>
           <Link href="/leaderboard" aria-label="View the gamified leaderboard">
             Leaderboard
           </Link>
