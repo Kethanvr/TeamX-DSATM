@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Upload, Database, FileDown } from "lucide-react";
+import { Upload, Database, FileDown, Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import type { EmissionDataset, EmissionRecord } from "@/lib/types";
@@ -9,6 +9,38 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useEmissionData } from "@/components/providers/EmissionDataProvider";
+
+type DemoDatasetMeta = {
+  id: string;
+  title: string;
+  description: string;
+  loader: () => Promise<EmissionDataset>;
+};
+
+const DEMO_DATASETS: DemoDatasetMeta[] = [
+  {
+    id: "manufacturing",
+    title: "ABC Manufacturing · Q4 2025",
+    description: "Heavy manufacturing operations with electricity audits and business travel.",
+    loader: async () =>
+      (await import("@/data/dummy_emission_data.json")).default as EmissionDataset,
+  },
+  {
+    id: "logistics",
+    title: "Nova Logistics · Fleet 2025",
+    description: "Long-haul trucking vs air freight with seasonal fuel surges.",
+    loader: async () =>
+      (await import("@/data/dummy_emission_data_logistics.json"))
+        .default as EmissionDataset,
+  },
+  {
+    id: "energy",
+    title: "HelioTech Energy · Q1 2026",
+    description: "Hybrid solar plants balancing storage, backup diesel, and site travel.",
+    loader: async () =>
+      (await import("@/data/dummy_emission_data_energy.json")).default as EmissionDataset,
+  },
+];
 
 const REQUIRED_COLUMNS = [
   "department",
@@ -90,13 +122,17 @@ export function UploadDataCard() {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [selectedDatasetId, setSelectedDatasetId] = useState<string>(DEMO_DATASETS[0]?.id ?? "");
 
   const handleDemoData = async () => {
     try {
       setErrorMessage(null);
       setIsLoading(true);
-      const demoModule = await import("@/data/dummy_emission_data.json");
-      const dataset = demoModule.default as EmissionDataset;
+      const selectedDataset = DEMO_DATASETS.find((dataset) => dataset.id === selectedDatasetId);
+      if (!selectedDataset) {
+        throw new Error("Select a demo scenario before loading.");
+      }
+      const dataset = await selectedDataset.loader();
       setDataset(dataset);
       router.push("/dashboard");
     } catch (error) {
@@ -140,50 +176,81 @@ export function UploadDataCard() {
   };
 
   return (
-    <Card className="card-hover mx-auto max-w-2xl bg-white/90 shadow-lg shadow-emerald-100/40 backdrop-blur">
+    <Card className="card-hover mx-auto max-w-3xl bg-white/95 shadow-lg shadow-emerald-100/40 backdrop-blur">
       <CardHeader>
         <Badge aria-label="Dataset selector badge" variant="secondary" className="w-fit">
           Load Emission Data
         </Badge>
-        <CardTitle className="text-2xl font-bold text-slate-900">
+        <CardTitle className="flex items-center gap-2 text-2xl font-bold text-slate-900">
+          <Sparkles className="h-5 w-5 text-emerald-500" aria-hidden="true" />
           Start your sustainability analysis
         </CardTitle>
         <CardDescription className="text-base text-slate-600">
-          Load the curated demo dataset or upload your own CSV with department-level activity data.
+          Load a curated industry scenario or upload your own CSV with department-level activity data.
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="grid gap-4 sm:grid-cols-2">
-          <Button
-            onClick={handleDemoData}
-            aria-label="Use the built-in demo dataset"
-            disabled={isLoading}
-            className="h-24 justify-start gap-3 text-left text-base transition-transform active:scale-[0.98]"
-          >
-            <Database className="h-6 w-6" aria-hidden="true" />
-            <div>
-              <p className="font-semibold">Use Demo Dataset</p>
-              <p className="text-sm opacity-80">
-                Q4 data with pre-calculated emissions and forecasts.
-              </p>
+      <CardContent className="space-y-7">
+        <div className="grid gap-4 md:grid-cols-[1.2fr_0.8fr]">
+          <div className="space-y-3">
+            <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+              Demo scenarios
+            </p>
+            <div className="grid gap-3">
+              {DEMO_DATASETS.map((dataset) => {
+                const isSelected = dataset.id === selectedDatasetId;
+                return (
+                  <button
+                    key={dataset.id}
+                    type="button"
+                    onClick={() => setSelectedDatasetId(dataset.id)}
+                    aria-label={`Select ${dataset.title}`}
+                    className={`rounded-2xl border px-4 py-4 text-left transition-all duration-150 ${
+                      isSelected
+                        ? "border-emerald-300 bg-emerald-50 shadow-sm"
+                        : "border-slate-200 hover:border-emerald-200 hover:bg-emerald-50/60"
+                    }`}
+                  >
+                    <p className="text-sm font-semibold text-slate-900">{dataset.title}</p>
+                    <p className="text-sm text-slate-600">{dataset.description}</p>
+                  </button>
+                );
+              })}
             </div>
-          </Button>
+            <Button
+              onClick={handleDemoData}
+              aria-label="Load selected demo dataset"
+              disabled={isLoading}
+              className="w-full justify-center gap-2"
+            >
+              <Database className="h-5 w-5" aria-hidden="true" />
+              Launch selected scenario
+            </Button>
+          </div>
 
-          <Button
-            variant="secondary"
-            onClick={handleOpenFilePicker}
-            aria-label="Upload a CSV file"
-            disabled={isLoading}
-            className="h-24 justify-start gap-3 text-left text-base transition-transform active:scale-[0.98]"
-          >
-            <Upload className="h-6 w-6 text-slate-600" aria-hidden="true" />
-            <div>
-              <p className="font-semibold text-slate-900">Upload CSV</p>
-              <p className="text-sm text-slate-500">
-                Expected columns: {REQUIRED_COLUMNS.join(", ")}
+          <div className="flex h-full flex-col justify-between gap-4 rounded-2xl border border-slate-200 bg-slate-50/70 p-5">
+            <div className="space-y-3">
+              <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+                Upload CSV
               </p>
+              <p className="text-sm text-slate-600">
+                Bring your own activity data with the expected columns below. We validate column
+                headers, numeric fields, and month formatting before loading the dashboard.
+              </p>
+              <div className="rounded-xl border border-dashed border-slate-300 bg-white p-4 text-xs font-medium uppercase tracking-wide text-slate-500">
+                {REQUIRED_COLUMNS.join(" · ")}
+              </div>
             </div>
-          </Button>
+            <Button
+              variant="secondary"
+              onClick={handleOpenFilePicker}
+              aria-label="Upload a CSV file"
+              disabled={isLoading}
+              className="justify-center gap-2"
+            >
+              <Upload className="h-5 w-5" aria-hidden="true" />
+              Browse CSV
+            </Button>
+          </div>
           <input
             ref={inputRef}
             type="file"
