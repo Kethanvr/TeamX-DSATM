@@ -16,4 +16,3 @@ export function formatMonthLabel(input: string) {
     year: "2-digit",
   });
 }
-
