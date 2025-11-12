@@ -3,8 +3,15 @@
 import { useState } from "react";
 import { BrainCircuit, Loader2, AlertTriangle } from "lucide-react";
 
-import type { GeminiResponse, MonthlyEmissionPoint } from "@/lib/types";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import type { InsightsResponse, MonthlyEmissionPoint } from "@/lib/types";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -21,7 +28,7 @@ export function AIInsightsCard({
   aggregated,
   monthlySeries,
 }: AIInsightsCardProps) {
-  const [insights, setInsights] = useState<GeminiResponse | null>(null);
+  const [insights, setInsights] = useState<InsightsResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -29,7 +36,7 @@ export function AIInsightsCard({
     setIsLoading(true);
     setErrorMessage(null);
     try {
-      const response = await fetch("/api/gemini", {
+      const response = await fetch("/api/insights", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,10 +50,10 @@ export function AIInsightsCard({
       });
 
       if (!response.ok) {
-        throw new Error("Gemini API returned an error");
+        throw new Error("Insight service returned an error");
       }
 
-      const data = (await response.json()) as GeminiResponse | { error: string };
+      const data = (await response.json()) as InsightsResponse | { error: string };
       if ("error" in data) {
         throw new Error(data.error);
       }
@@ -55,7 +62,7 @@ export function AIInsightsCard({
     } catch (error) {
       console.error("Failed to generate AI insights", error);
       setErrorMessage(
-        "We could not reach Gemini right now. Showing a fallback recommendation set.",
+        "We could not generate fresh insights right now. Showing a curated recommendation set so the demo can continue.",
       );
       setInsights({
         insightText:
@@ -77,14 +84,14 @@ export function AIInsightsCard({
     <Card className="h-full">
       <CardHeader>
         <Badge aria-label="AI insights badge" variant="secondary">
-          Gemini Insights
+          Insight Engine
         </Badge>
         <CardTitle className="flex items-center gap-2 text-2xl font-semibold text-slate-900">
           <BrainCircuit className="h-6 w-6 text-blue-500" aria-hidden="true" />
           AI Recommendations
         </CardTitle>
         <CardDescription>
-          Send aggregated emissions to Google Gemini to receive prioritized sustainability actions.
+          Transform aggregated emissions into briefing-ready insights and prioritized actions.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -118,7 +125,7 @@ export function AIInsightsCard({
           </div>
         ) : (
           <p className="text-sm text-slate-500">
-            Trigger Gemini AI to transform your metrics into executive-ready guidance and quick wins.
+            Generate narrative-ready insights, recommended actions, and a scenario forecast in one click.
           </p>
         )}
 
