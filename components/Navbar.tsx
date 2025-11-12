@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 const navItems = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/admin", label: "Admin" },
+  { href: "/guide", label: "Guide" },
 ];
 
 export function Navbar() {
