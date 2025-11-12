@@ -25,14 +25,14 @@ export type EmissionMetrics = {
   departmentPercentages: Record<string, number>;
 };
 
-export type GeminiRequestPayload = {
+export type InsightsRequestPayload = {
   company: string;
   period: string;
   aggregated: Record<string, number>;
   monthlySeries: MonthlyEmissionPoint[];
 };
 
-export type GeminiResponse = {
+export type InsightsResponse = {
   insightText: string;
   actions: string[];
   forecastSummary: string;
