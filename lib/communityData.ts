@@ -17,6 +17,15 @@ export type CommunityPost = {
   }[];
 };
 
+export type SustainabilityChallenge = {
+  id: string;
+  title: string;
+  description: string;
+  timeline: string;
+  goal: string;
+  featuredProducts: string[];
+};
+
 export const communityPosts: CommunityPost[] = [
   {
     id: "p1",
@@ -113,6 +122,45 @@ export const communityPosts: CommunityPost[] = [
         timestamp: "Earlier this week",
       },
     ],
+  },
+];
+
+export const sustainabilityChallenges: SustainabilityChallenge[] = [
+  {
+    id: "c1",
+    title: "Reusable packaging sprint",
+    description:
+      "Test compostable pallet wrap and reusable totes across two distribution centers. Capture feedback from warehouse teams and measure landfill diversion.",
+    timeline: "Mar 3 – Mar 28",
+    goal: "Displace 5,000 single-use wraps",
+    featuredProducts: ["Compostable stretch film", "Reusable delivery totes"],
+  },
+  {
+    id: "c2",
+    title: "Green cleaning starter kit",
+    description:
+      "Swap petrochemical cleaners for plant-based concentrates in office janitorial routines. Track indoor air quality and staff sentiment.",
+    timeline: "Mar 10 – Apr 5",
+    goal: "90% plant-based adoption",
+    featuredProducts: ["EcoClean All-Purpose", "Waterless mop pads"],
+  },
+  {
+    id: "c3",
+    title: "Solar-ready commute challenge",
+    description:
+      "Encourage employees to pair e-bike commutes with solar charging lockers. Offer incentives for consistent usage and gather testimonials.",
+    timeline: "Mar 15 – Apr 30",
+    goal: "100 regular riders",
+    featuredProducts: ["VoltRide commuter e-bike", "SunPod solar lockers"],
+  },
+  {
+    id: "c4",
+    title: "Circular office supplies",
+    description:
+      "Trial recycled notebooks, refillable pens, and zero-waste coffee pods across HQ floors. Measure reduction in single-use plastics.",
+    timeline: "Mar 1 – Mar 31",
+    goal: "Reduce office waste 20%",
+    featuredProducts: ["LoopRefill pens", "ZeroPod coffee system"],
   },
 ];
 
