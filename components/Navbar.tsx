@@ -11,6 +11,7 @@ const navItems = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/admin", label: "Admin" },
   { href: "/community", label: "Community" },
+  { href: "/news", label: "Daily Insights" },
   { href: "/leaderboard", label: "Leaderboard" },
   { href: "/guide", label: "Guide" },
 ];
