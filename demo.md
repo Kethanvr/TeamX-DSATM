@@ -3,8 +3,7 @@
 ## Pre-Demo Checklist
 
 - Run `npm run dev` and open the application at `http://localhost:3000`.
-- Ensure the Gemini API key is set in `.env.local` if you plan to call the live API (optional).
-- Confirm the dummy dataset loads without errors.
+- Confirm the demo datasets load without errors.
 
 ## Live Demo Flow
 
@@ -22,7 +21,7 @@
 
 4. **AI Insights**  
    - Scroll to the AI card, click **Generate Insights**.  
-   - Mention that Gemini receives aggregated data and returns summary, actions, and forecast language.
+   - Explain that the on-device insight engine digests aggregated data to produce summary, actions, and a forecast snippet.
 
 5. **Forecast Panel**  
    - Present the “Current vs Optimized” chart.  
