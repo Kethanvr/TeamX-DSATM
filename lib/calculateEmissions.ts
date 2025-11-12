@@ -18,7 +18,9 @@ function computeEmission(record: EmissionRecord) {
   return Number.isFinite(emission) ? emission : 0;
 }
 
-function sortMonthlySeries(series: Record<string, number>): MonthlyEmissionPoint[] {
+function sortMonthlySeries(
+  series: Record<string, number>
+): MonthlyEmissionPoint[] {
   return Object.entries(series)
     .sort(([monthA], [monthB]) => monthA.localeCompare(monthB))
     .map(([month, value]) => ({
@@ -35,11 +37,11 @@ function deriveEcoScore(totalEmission: number) {
 
 function derivePercentages(
   totalsByDepartment: Record<string, number>,
-  totalEmission: number,
+  totalEmission: number
 ) {
   if (totalEmission === 0) {
     return Object.fromEntries(
-      Object.keys(totalsByDepartment).map((department) => [department, 0]),
+      Object.keys(totalsByDepartment).map((department) => [department, 0])
     );
   }
 
@@ -47,37 +49,36 @@ function derivePercentages(
     Object.entries(totalsByDepartment).map(([department, value]) => [
       department,
       Number(((value / totalEmission) * 100).toFixed(1)),
-    ]),
+    ])
   );
 }
 
 export function calculateEmissions(dataset: EmissionDataset): EmissionMetrics {
-  const { totalsByDepartment, totalsByMonth, totalEmission } = dataset.departments.reduce<
-    Accumulators
-  >(
-    (acc, record) => {
-      const emission = computeEmission(record);
+  const { totalsByDepartment, totalsByMonth, totalEmission } =
+    dataset.departments.reduce<Accumulators>(
+      (acc, record) => {
+        const emission = computeEmission(record);
 
-      acc.totalEmission += emission;
-      acc.totalsByDepartment[record.department] =
-        (acc.totalsByDepartment[record.department] ?? 0) + emission;
-      acc.totalsByMonth[record.month] =
-        (acc.totalsByMonth[record.month] ?? 0) + emission;
+        acc.totalEmission += emission;
+        acc.totalsByDepartment[record.department] =
+          (acc.totalsByDepartment[record.department] ?? 0) + emission;
+        acc.totalsByMonth[record.month] =
+          (acc.totalsByMonth[record.month] ?? 0) + emission;
 
-      return acc;
-    },
-    {
-      totalsByDepartment: {},
-      totalsByMonth: {},
-      totalEmission: 0,
-    },
-  );
+        return acc;
+      },
+      {
+        totalsByDepartment: {},
+        totalsByMonth: {},
+        totalEmission: 0,
+      }
+    );
 
   const roundedTotals = Object.fromEntries(
     Object.entries(totalsByDepartment).map(([department, value]) => [
       department,
       Number(value.toFixed(2)),
-    ]),
+    ])
   );
 
   const roundedTotalEmission = Number(totalEmission.toFixed(2));
@@ -85,7 +86,7 @@ export function calculateEmissions(dataset: EmissionDataset): EmissionMetrics {
   const ecoScore = deriveEcoScore(roundedTotalEmission);
   const departmentPercentages = derivePercentages(
     roundedTotals,
-    roundedTotalEmission,
+    roundedTotalEmission
   );
 
   return {
@@ -100,7 +101,7 @@ export function calculateEmissions(dataset: EmissionDataset): EmissionMetrics {
 export function createForecastSeries(
   monthlySeries: MonthlyEmissionPoint[],
   reductionRatio = 0.15,
-  growthRatio = 0.04,
+  growthRatio = 0.04
 ) {
   if (monthlySeries.length === 0) {
     return [];
@@ -114,7 +115,10 @@ export function createForecastSeries(
     const date = new Date(startDate);
     date.setMonth(date.getMonth() + index + 1);
 
-    const label = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
+    const label = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
+      2,
+      "0"
+    )}`;
     const currentTrend =
       index === 0
         ? baseValue * (1 + growthRatio)
@@ -130,4 +134,3 @@ export function createForecastSeries(
     };
   });
 }
-
