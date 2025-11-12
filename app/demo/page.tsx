@@ -17,8 +17,7 @@ export default function DemoPage() {
         <h2 className="text-xl font-semibold text-slate-900">Pre-demo checklist</h2>
         <ul className="list-disc space-y-2 pl-6 text-sm text-slate-600">
           <li>Run <code className="rounded bg-slate-100 px-2 py-1">npm run dev</code> and open <span className="font-medium text-slate-800">http://localhost:3000</span>.</li>
-          <li>Optional: add <code className="rounded bg-slate-100 px-2 py-1">GEMINI_API_KEY</code> to `.env.local` for live calls.</li>
-          <li>Verify the demo dataset loads successfully.</li>
+          <li>Verify the demo datasets load successfully.</li>
         </ul>
       </section>
 
@@ -35,7 +34,7 @@ export default function DemoPage() {
             <strong>Dashboard Highlights.</strong> Spotlight top metrics, hover over charts, and mention tooltips showing kg CO₂e values.
           </li>
           <li>
-            <strong>AI Insights.</strong> Scroll to the AI card, trigger <em>Generate Insights</em>, and note the Gemini-powered summary and actions.
+            <strong>AI Insights.</strong> Scroll to the AI card, trigger <em>Generate Insights</em>, and highlight the narrative summary, actions, and forecast snippet.
           </li>
           <li>
             <strong>Forecast Panel.</strong> Compare current vs optimized trajectories and call out the projected reduction percentage.
