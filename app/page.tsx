@@ -19,12 +19,20 @@ export default function Home() {
               Turn raw emissions into confident sustainability playbooks.
             </h1>
             <p className="text-lg text-emerald-50 md:text-xl">
-              Load curated demo scenarios or bring your own CSV to uncover top emitters, compare future trajectories, and brief executives with AI-authored guidance—all from a single dashboard.
+              Load curated demo scenarios or bring your own CSV to uncover top
+              emitters, compare future trajectories, and brief executives with
+              AI-authored guidance—all from a single dashboard.
             </p>
             <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-wide text-emerald-50/90 md:text-sm">
-              <span className="rounded-full bg-white/20 px-4 py-1">Interactive dashboard</span>
-              <span className="rounded-full bg-white/20 px-4 py-1">Forecast simulations</span>
-              <span className="rounded-full bg-white/20 px-4 py-1">AI insights</span>
+              <span className="rounded-full bg-white/20 px-4 py-1">
+                Interactive dashboard
+              </span>
+              <span className="rounded-full bg-white/20 px-4 py-1">
+                Forecast simulations
+              </span>
+              <span className="rounded-full bg-white/20 px-4 py-1">
+                AI insights
+              </span>
             </div>
           </div>
 
