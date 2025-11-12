@@ -95,8 +95,8 @@ export function UploadDataCard() {
     try {
       setErrorMessage(null);
       setIsLoading(true);
-      const module = await import("@/data/dummy_emission_data.json");
-      const dataset = module.default as EmissionDataset;
+      const demoModule = await import("@/data/dummy_emission_data.json");
+      const dataset = demoModule.default as EmissionDataset;
       setDataset(dataset);
       router.push("/dashboard");
     } catch (error) {
