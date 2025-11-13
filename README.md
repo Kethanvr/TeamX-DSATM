@@ -2,117 +2,59 @@
 
 # 🌱 EcoMeter AI
 
-An intelligent carbon emission management dashboard for hackathon demos. Built with Next.js (App Router), TailwindCSS v3, shadcn/ui primitives, Recharts, and an on-device insight engine.
+An intelligent carbon-emission storytelling experience that helps sustainability teams explain impact, explore trade-offs, and pitch reduction strategies with data-driven clarity.
 
 </div>
 
-## ✨ Highlights
+## Overview
 
-- Interactive dashboard with bar, pie, and line charts powered by Recharts.
-- Landing page card that offers multiple curated demo datasets or CSV uploads with shape validation.
-- AI Insights card that posts aggregated data to `/api/insights` and returns narrative summaries, actions, and a forecast snippet.
-- Forecast widget that visualizes current vs optimized trajectories and projected reduction impact.
-- Admin workspace with filtering, grouped totals, and CSV export alongside the EcoScore heuristic.
+EcoMeter AI is a narrative-first analytics workspace built to demo how organisations can monitor and optimise their carbon footprint across departments. It combines ready-to-present visuals, heuristic insights, and guided messaging so teams can communicate sustainability progress without needing external tooling or bespoke integrations.
 
-## 🧱 Project Structure
+## Why It Exists
 
-```
-app/
-  layout.tsx            # Root layout with navbar, footer, providers
-  page.tsx              # Home with dataset loader
-  dashboard/page.tsx    # Main analytics view
-  admin/page.tsx        # Optional audit table
-  demo/page.tsx         # Presenter script (visual)
-  api/insights/route.ts # Server action powering AI briefings
-  demo/download/route.ts# Download demo.md
-components/
-  Navbar.tsx, Footer.tsx
-  UploadDataCard.tsx
-  EmissionChart.tsx
-  AIInsightsCard.tsx
-  ForecastChart.tsx
-  EcoScoreCard.tsx
-  providers/EmissionDataProvider.tsx
-  ui/{button,card,badge,progress}.tsx
-data/
-  dummy_emission_data.json
-  dummy_emission_data_logistics.json
-  dummy_emission_data_energy.json
-  sample_upload.csv
-lib/
-  calculateEmissions.ts
-  insightsEngine.ts
-  types.ts
-  utils.ts
-styles/
-  globals.css
-demo.md                 # Presenter narrative
-```
+- **Make carbon data tangible** for exec reviews, hackathons, and investor updates.
+- **Showcase AI-assisted narratives** that translate raw metrics into actions and forecast snippets.
+- **Prototype ESG storytelling** before connecting to operational systems or climate partners.
+- **Provide a safe sandbox** where demo datasets and uploads can be swapped in minutes.
 
-## 🚀 Getting Started
+## Core Experience
 
-1. **Install dependencies**
-   ```bash
-   npm install
-   ```
+- **Unified landing page** that lets presenters pick curated datasets or upload CSVs with schema validation for a tailored story.
+- **Interactive dashboard** featuring bar, pie, and line charts powered by Recharts with department-level breakdowns.
+- **AI Insights card** that aggregates data and returns plain-language summaries, prioritized actions, and a forecast talking point.
+- **Forecast comparison widget** showing current trajectory versus recommended optimised path and the projected reduction impact.
+- **EcoScore heuristic** that translates total emissions into a digestible health score with contextual color banding.
+- **Admin workspace** offering filters, grouped totals, CSV export, and a behind-the-scenes audit trail.
 
-2. **Environment (optional)**
-   - Create `.env.local` if you need to store project-specific overrides (e.g., analytics IDs or future API hooks).  
-     No variables are required for the local heuristic insight engine.
+## Guided Demo Flow
 
-3. **Run the dev server**
-   ```bash
-   npm run dev
-   ```
-   Visit `http://localhost:3000`.
+1. Start on the landing page and choose a demo dataset or upload a scenario-specific CSV.
+2. Jump into the dashboard to explore emissions by department, month, and contribution split.
+3. Generate AI insights to unlock narrative talking points and recommended actions.
+4. Walk through the forecast section to compare current versus optimised trends.
+5. Reference the EcoScore and admin workspace to discuss governance, compliance, and next steps.
 
-## 📊 Dataset & Calculations
+## Data & Intelligence
 
-- Curated demo scenarios live in `data/dummy_emission_data*.json` covering manufacturing, logistics, and renewable energy operations.
-- Each record includes `department`, `month`, `quantity`, `unit`, and `emission_factor`.
-- `calculateEmissions.ts` computes:
-  - Emission totals per department and month.
-  - Overall CO₂e and normalized EcoScore (expected max = 20,000 kg CO₂e).
-  - Percentage splits for pie charts.
-- Forecasts extrapolate growth vs a 15% reduction scenario.
+- Demo scenarios cover manufacturing, logistics, and renewable energy operations stored in `data/dummy_emission_data*.json`.
+- Each record tracks department, month, quantity, unit, and emission factors so totals and percentages can be computed reliably.
+- `calculateEmissions.ts` powers aggregation and chart-ready reshaping, while the heuristic insight engine in `lib/insightsEngine.ts` crafts narratives offline.
+- The `/api/insights` endpoint centralises processing so the UI can gracefully handle both success and fallback messaging.
 
-## 🤖 Insight Engine
+## Technology Foundation
 
-- `app/api/insights/route.ts` centralises server-side generation.
-- `lib/insightsEngine.ts` analyses aggregated data locally and returns narrative-ready insights, prioritized actions, and a forecast snippet.
-- The frontend displays graceful fallbacks if the request fails so the demo can continue uninterrupted.
+- Built with Next.js App Router, Tailwind CSS v3, and shadcn/ui component primitives.
+- Recharts drives the data visualisation layer with responsive defaults for demos and tablets.
+- State is managed through lightweight providers, keeping the experience fast and dependency-light.
 
-## 🧪 Demo & Test Checklist
+## Roadmap
 
-Before shipping, run through:
-
-1. `npm run dev` starts Next.js and loads the homepage.
-2. Click **Use Demo Dataset** → routed to `/dashboard`.
-3. Bar/pie/line charts render with interactive tooltips.
-4. **Generate Insights** returns summary + 3 actions (local heuristic engine).
-5. Forecast chart shows both lines with three future months.
-6. EcoScore between 0–100 with correct color banding.
-7. Upload a CSV matching the template → charts update (try `data/sample_upload.csv`).
-8. API failure surfaces a friendly inline error and fallback insights.
-
-## 🎤 Demo Resources
-
-- Presenter guide lives at `/demo` with a downloadable `demo.md`.
-- Quick flow: Home → Use Demo → Dashboard charts → Generate Insights → Forecast → EcoScore → Admin table.
-
-## 📦 Deployment Notes
-
-- Designed for Vercel or any Node-compatible host.
-- `next.config.js` enables standalone output for simplified hosting.
-- No external database required—state lives in memory for demo purposes.
-
-## 🧰 Scripts
-
-- `npm run dev` — start local dev server.
-- `npm run build` — production build.
-- `npm run start` — run the compiled app.
-- `npm run lint` — ESLint via `eslint-config-next`.
+- **Live data connectors:** plug in real emissions feeds or sustainability APIs.
+- **Scenario planning:** simulate policy changes or supplier swaps with side-by-side comparisons.
+- **Collaboration mode:** share insight snapshots and assign follow-up actions.
+- **Automation hooks:** push recommended actions into project trackers or alerting systems.
+- **Accessibility polish:** broaden keyboard navigation and narration-ready modes for presenters.
 
 ---
 
-Built for rapid hackathon storytelling. Extend with live data connectors, historical baselines, or automation hooks as your MVP evolves. 🌍
+EcoMeter AI is crafted for teams who need to persuade, educate, and inspire around decarbonisation journeys—no manual spreadsheet wrangling required. 🌍
